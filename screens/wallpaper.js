@@ -1,26 +1,11 @@
-// import React from 'react';
-// import {View, Text, Button} from 'react-native';
 
-// function WallpaperScreen({navigation,route}) {
-//     const {title} = route.params
-//     return (
-//       <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-//         <Text>{title}</Text>
-//         <Button
-//           title="Go to Details... again"
-//           onPress={() => navigation.push('Details')}
-//         />
-//         <Button title="Go to Home" onPress={() => navigation.navigate('Home')} />
-//         <Button title="Go back" onPress={() => navigation.goBack()} />
-//       </View>
-//     );
-//   }
-
-//   export default WallpaperScreen;
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { View, Image, Text, StyleSheet, Dimensions, FlatList } from 'react-native';
+import { View, Image, Text, StyleSheet, Dimensions, FlatList, TouchableOpacity } from 'react-native';
 
 const { width } = Dimensions.get('window');
+
+
 //assets/ganesh/ganesh_img_ 0.jpg
 const data = [
   { id: 1, image: require('../assets/ganesh/ganesh_img_1.jpeg'), title: 'Image 1' },
@@ -31,17 +16,28 @@ const data = [
   { id: 6, image: require('../assets/ganesh/ganesh_img_6.jpeg'), title: 'Image 6' },
 ];
 
-const renderItem = ({ item }) => (
-  <View style={styles.card}>
-    <Image style={styles.image} source={item.image} />
-    {/* <Text style={styles.title}>{item.title}</Text> */}
-  </View>
-);
+
 
 const WallpaperScreen = () => {
+  const imageSource = require('../assets/ganesh/ganesh_img_1.jpeg')
   const numColumns = 2;
+  const navigation = useNavigation();
+  const handlePress = (item) => {
+    
+    console.log(imageSource)
+    navigation.navigate('SetWallpaper', {itemImage: imageSource});
+  };
 
+  const renderItem = ({ item }) => (
+    <TouchableOpacity style={{ flex: 1 }} onPress={() => handlePress(item)}>
+    <View style={styles.card}>
+      <Image style={styles.image} source={item.image} />
+      {/* <Text style={styles.title}>{item.title}</Text> */}
+    </View>
+    </TouchableOpacity>
+  );
   return (
+    
     <View style={styles.container}>
       <FlatList
         data={data}
@@ -50,6 +46,7 @@ const WallpaperScreen = () => {
         numColumns={numColumns}
       />
     </View>
+    
   );
 };
 

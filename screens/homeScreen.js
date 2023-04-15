@@ -7,7 +7,7 @@ function HomeScreen({navigation}) {
         navigation.navigate('Wallpaper',{title:"Ganeshji"});
       };
   return (
-    <View style={{flex: 1,marginTop:10}}>
+    <View style={{flex: 1,marginTop:10,alignItems:'center'}}>
      
       <TouchableOpacity onPress={goToWallpaperPage} title="Ganesji">
         <NameCard
@@ -16,7 +16,27 @@ function HomeScreen({navigation}) {
         imageSource={require('../assets/ganeshIcon.png')}
         />
       </TouchableOpacity>
-      
+      <TouchableOpacity onPress={goToWallpaperPage} title="Ganesji">
+        <NameCard
+        title="Ganeshji"
+        subtitle="ॐ श्री गणेशाय नमः"
+        imageSource={require('../assets/ganeshIcon.png')}
+        />
+      </TouchableOpacity>
+      <TouchableOpacity onPress={goToWallpaperPage} title="Ganesji">
+        <NameCard
+        title="Ganeshji"
+        subtitle="ॐ श्री गणेशाय नमः"
+        imageSource={require('../assets/ganeshIcon.png')}
+        />
+      </TouchableOpacity>
+      <TouchableOpacity onPress={goToWallpaperPage} title="Ganesji">
+        <NameCard
+        title="Ganeshji"
+        subtitle="ॐ श्री गणेशाय नमः"
+        imageSource={require('../assets/ganeshIcon.png')}
+        />
+      </TouchableOpacity>
     </View>
   );
 }
