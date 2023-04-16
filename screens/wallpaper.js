@@ -1,52 +1,58 @@
-// import React from 'react';
-// import {View, Text, Button} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
+import React, {useState} from 'react';
+import {
+  View,
+  Image,
+  Text,
+  StyleSheet,
+  Dimensions,
+  FlatList,
+  TouchableOpacity,
+} from 'react-native';
 
-// function WallpaperScreen({navigation,route}) {
-//     const {title} = route.params
-//     return (
-//       <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-//         <Text>{title}</Text>
-//         <Button
-//           title="Go to Details... again"
-//           onPress={() => navigation.push('Details')}
-//         />
-//         <Button title="Go to Home" onPress={() => navigation.navigate('Home')} />
-//         <Button title="Go back" onPress={() => navigation.goBack()} />
-//       </View>
-//     );
-//   }
+import Images from '../assets/index';
 
-//   export default WallpaperScreen;
-import React from 'react';
-import { View, Image, Text, StyleSheet, Dimensions, FlatList } from 'react-native';
+const {width} = Dimensions.get('window');
 
-const { width } = Dimensions.get('window');
-//assets/ganesh/ganesh_img_ 0.jpg
 const data = [
-  { id: 1, image: require('../assets/ganesh/ganesh_img_1.jpeg'), title: 'Image 1' },
-  { id: 2, image: require('../assets/ganesh/ganesh_img_2.jpeg'), title: 'Image 2' },
-
-  { id: 4, image: require('../assets/ganesh/ganesh_img_4.jpeg'), title: 'Image 4' },
-  { id: 5, image: require('../assets/ganesh/ganesh_img_5.jpeg'), title: 'Image 5' },
-  { id: 6, image: require('../assets/ganesh/ganesh_img_6.jpeg'), title: 'Image 6' },
+  {
+    id: 1,
+    title: 'image1',
+  },
+  {
+    id: 2,
+    title: 'image2',
+  },
 ];
 
-const renderItem = ({ item }) => (
-  <View style={styles.card}>
-    <Image style={styles.image} source={item.image} />
-    {/* <Text style={styles.title}>{item.title}</Text> */}
-  </View>
-);
-
 const WallpaperScreen = () => {
+  const imageSource = require('../assets/ganesh/ganesh_img_1.jpeg');
   const numColumns = 2;
+  const [selectedImage, setSelectedImage] = useState();
+  const navigation = useNavigation();
+
+
+  const handlePress = (item) => {
+   console.log("Hello")
+    navigation.navigate('SetWallpaper', {title: item.title});
+  };
+
+  const renderItem = ({item}) => {
+    return (
+      <TouchableOpacity style={{flex: 1}} onPress={()=>{handlePress(item)}}>
+        <View style={styles.card}>
+          <Image style={styles.image} source={Images.ganesh[item.title]} />
+        </View>
+      </TouchableOpacity>
+    );
+  };
 
   return (
     <View style={styles.container}>
       <FlatList
         data={data}
         renderItem={renderItem}
-        keyExtractor={(item) => item.id.toString()}
+        keyExtractor={item => item.id.toString()}
         numColumns={numColumns}
       />
     </View>

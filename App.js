@@ -3,6 +3,8 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationContainer} from '@react-navigation/native';
 import HomeScreen from './screens/homeScreen';
 import WallpaperScreen from './screens/wallpaper';
+import SetWallpaper from './screens/setWallpaperScreen';
+import SetWallpaperScreen from './screens/setWallpaperScreen';
 
 
 
@@ -18,6 +20,7 @@ function App() {
           options={{title: 'God Wallpaper'}}
         />
         <Stack.Screen name="Wallpaper" component={WallpaperScreen} />
+        <Stack.Screen name="SetWallpaper" component={SetWallpaperScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
