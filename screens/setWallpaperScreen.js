@@ -1,19 +1,11 @@
 import React from 'react';
-import {Image, StyleSheet, Text, ToastAndroid, View} from 'react-native';
+import {Image, StyleSheet, Text, ToastAndroid, View, NativeModules } from 'react-native';
 import FloatingButton from '../components/floatingButton';
-//import {WallpaperManager} from 'react-native-wallpaper-manager';
-import RNSetWallpaper from 'react-native-set-wallpaper';
 
-import WallPaperManager from 'react-native-set-wallpaper';
-//import SetWallpaper from 'react-native-set-wallpaper';
-import SetWallpaper, {
-  WallpaperOptions,
-  WallpaperType,
-  WallpaperScale,
-} from 'react-native-set-wallpaper';
+import Images from '../assets/index';
 
-const SetWallpaperScreen = () => {
-  // console.log(itemImage)
+const SetWallpaperScreen = ({route}) => {
+  const imgTitle = route.params.title;
 
   // console.log(typeof(image))
 
@@ -28,20 +20,18 @@ const SetWallpaperScreen = () => {
   };
 
   const handlePress = () => {
-    // This code is working where wallpapermanage is from react-native-set-wallpaper
-    WallPaperManager.setWallpaper(
-      {
-        uri: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg',
-      },
-      res => {
-        console.log(res);
-        showToastWithGravity();
-      },
+    NativeModules.WallPaperManager.setWallpaper(
+        Image.resolveAssetSource(Images.ganesh[imgTitle]),
+        res => {
+            console.log(res);
+            showToastWithGravity();
+          }
     );
+    
   };
   return (
     <View style={styles.container}>
-      
+      <Image style={styles.image} source={Images.ganesh[imgTitle]}/>
       <FloatingButton style={{fontSize: 40}} onPress={handlePress} />
     </View>
   );

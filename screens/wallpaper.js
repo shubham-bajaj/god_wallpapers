@@ -10,34 +10,18 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
+import Images from '../assets/index';
+
 const {width} = Dimensions.get('window');
 
 const data = [
   {
     id: 1,
-    image: require('../assets/ganesh/ganesh_img_1.jpeg'),
-    title: 'Image 1',
+    title: 'image1',
   },
   {
     id: 2,
-    image: require('../assets/ganesh/ganesh_img_2.jpeg'),
-    title: 'Image 2',
-  },
-
-  {
-    id: 4,
-    image: require('../assets/ganesh/ganesh_img_4.jpeg'),
-    title: 'Image 4',
-  },
-  {
-    id: 5,
-    image: require('../assets/ganesh/ganesh_img_5.jpeg'),
-    title: 'Image 5',
-  },
-  {
-    id: 6,
-    image: require('../assets/ganesh/ganesh_img_6.jpeg'),
-    title: 'Image 6',
+    title: 'image2',
   },
 ];
 
@@ -46,18 +30,18 @@ const WallpaperScreen = () => {
   const numColumns = 2;
   const [selectedImage, setSelectedImage] = useState();
   const navigation = useNavigation();
+
+
   const handlePress = (item) => {
    console.log("Hello")
-    navigation.navigate('SetWallpaper');
+    navigation.navigate('SetWallpaper', {title: item.title});
   };
 
   const renderItem = ({item}) => {
-    
     return (
       <TouchableOpacity style={{flex: 1}} onPress={()=>{handlePress(item)}}>
         <View style={styles.card}>
-          <Image style={styles.image} source={item.image} />
-          <Text style={styles.title}>{item.title}</Text>
+          <Image style={styles.image} source={Images.ganesh[item.title]} />
         </View>
       </TouchableOpacity>
     );
