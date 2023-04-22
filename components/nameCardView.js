@@ -1,13 +1,20 @@
 import React from 'react';
 import {View,Text,StyleSheet,Image,} from 'react-native';
-
-const NameCard = ({title, subtitle, imageSource}) => {
-  return (
+import LinearGradient from 'react-native-linear-gradient';
+const NameCard = ({title, subtitle, imageSource,bgColor}) => {
+  const containerStyle = {
+    backgroundColor: '#FFF',
     
-      <View style={styles.mainCardView}>
+  };
+  
+  return (
+      
+      
+      <View style={[styles.mainCardView,containerStyle]}>
+      {/* <LinearGradient colors={['#4c669f', '#3b5998', '#192f6a']} style={styles.linearGradient}> */}
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
           
-          <View style={{marginLeft: 12}}>
+          <View style={{marginLeft: 12,width:200}}>
             <Text
               style={{
                 fontSize: 28,
@@ -27,7 +34,7 @@ const NameCard = ({title, subtitle, imageSource}) => {
               <Text
                 style={{
                   //color: Colors.gray,
-                  fontSize: 12,
+                  fontSize: 15,
                 }}>
                 {subtitle}
               </Text>
@@ -46,8 +53,10 @@ const NameCard = ({title, subtitle, imageSource}) => {
             />
           </View>
         </View>
-        
+        {/* </LinearGradient> */}
       </View>
+      
+
     
   );
 };
@@ -56,12 +65,19 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
   },
+  linearGradient: {
+    flex: 1,
+    paddingLeft: 15,
+    paddingRight: 15,
+    borderRadius: 5
+  },
   mainCardView: {
     height: 90,
     width:320,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'white',
+    //backgroundColor: {bgColor},
+    //backgroundColor: 'rgba(150, 150, 150, 0.2)',
     borderRadius: 15,
     //shadowColor: Colors.shadow,
     shadowOffset: {width: 0, height: 0},
@@ -78,10 +94,11 @@ const styles = StyleSheet.create({
     marginRight: 16,
   },
   subCardView: {
+    
     height: 50,
     width: 50,
     borderRadius: 25,
-    marginLeft:100,
+    marginLeft:20,
     //   backgroundColor: Colors.history_back,
     //   borderColor: Colors.color_eeeeee,
     borderWidth: 1,

@@ -1,15 +1,24 @@
-import React from 'react';
-import {Image, StyleSheet, Text, ToastAndroid, View, NativeModules } from 'react-native';
+import React, { useState } from 'react';
+import {
+  Image,
+  StyleSheet,
+  Text,
+  ToastAndroid,
+  View,
+  NativeModules,
+  Alert,
+} from 'react-native';
 import FloatingButton from '../components/floatingButton';
 
 import Images from '../assets/index';
+import { useNavigation } from '@react-navigation/native';
 
 const SetWallpaperScreen = ({route}) => {
   const imgTitle = route.params.title;
+  const fname = route.params.fname;
+  const navigation = useNavigation();
 
   // console.log(typeof(image))
-
-
 
   const showToastWithGravity = () => {
     ToastAndroid.showWithGravity(
@@ -18,20 +27,31 @@ const SetWallpaperScreen = ({route}) => {
       ToastAndroid.CENTER,
     );
   };
+  const createTwoButtonAlert = () =>
+    Alert.alert('Alert Title', 'My Alert Msg', [
+      {
+        text: 'Cancel',
+        onPress: () => console.log('Cancel Pressed'),
+        style: 'cancel',
+      },
+      {text: 'OK', onPress: () => console.log('OK Pressed')},
+    ]);
 
   const handlePress = () => {
+    console.log('handle press..');
     NativeModules.WallPaperManager.setWallpaper(
-        Image.resolveAssetSource(Images.ganesh[imgTitle]),
+        Image.resolveAssetSource(Images[fname][imgTitle]),
         res => {
             console.log(res);
             showToastWithGravity();
+            //navigation.navigate('Wallpaper');
+            //createTwoButtonAlert();
           }
     );
-    
   };
   return (
     <View style={styles.container}>
-      <Image style={styles.image} source={Images.ganesh[imgTitle]}/>
+      <Image style={styles.image} source={Images[fname][imgTitle]} />
       <FloatingButton style={{fontSize: 40}} onPress={handlePress} />
     </View>
   );
