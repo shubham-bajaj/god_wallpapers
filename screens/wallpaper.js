@@ -1,5 +1,5 @@
 import {useNavigation} from '@react-navigation/native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   Image,
@@ -55,44 +55,67 @@ const data = [
 
 const WallpaperScreen = ({route}) => {
   let fname = route.params.fname;
-
-  
-  console.log(fname);
-  console.log("total images: "+Object.keys(Images[fname]).length);
+  // console.log(fname);
+  // console.log("total images: "+Object.keys(Images[fname]).length);
   const noOfImages = Object.keys(Images[fname]).length;
-  const limitedData = data.slice(0,noOfImages);
+  const limitedData = data.slice(0, noOfImages);
   const numColumns = 2;
- 
   const navigation = useNavigation();
+  const [netdata, setNetData] = useState([]);
+  const [movies, setMovies] = useState([]);
+  // const f = 'shiv'
 
+  const handlePress = item => {
+    // navigation.navigate('SetWallpaper', {title: item.title, fname: fname});
+    navigation.navigate('SetWallpaper', {imageLink:item.imageLink});
 
-  const handlePress = (item) => {
-    navigation.navigate('SetWallpaper', {title: item.title,fname:fname});
   };
 
   const renderItem = ({item}) => {
     return (
-      <TouchableOpacity style={{flex: 1}} onPress={()=>{handlePress(item)}}>
+      <TouchableOpacity
+        style={{flex: 1}}
+        onPress={() => {
+          handlePress(item);
+        }}>
         <View style={styles.card}>
-          <Image style={styles.image} source={Images[fname][item.title]} />
+          {/* <Image style={styles.image} source={Images[fname][item.title]} /> */}
+          <Image style={styles.image} source={{
+          uri: item.imageLink,
+        }} />
+        <Text>{item.imageLink}</Text>
+          
         </View>
       </TouchableOpacity>
     );
   };
+  useEffect(() => {
+    fetch(`http://192.168.29.80:8000/api/images/?fname=${fname}`, {
+      method: 'GET',
+    })
+      .then(res => res.json())
+      .then(jsonRes => setNetData(jsonRes))
+      .catch(error => console.log(error));
+    
+  }
+
+  , []);
 
   return (
     <View style={styles.container}>
       <LinearGradient
-        colors={['#FFFF','#FFA07A', '#FF7F50']}
+        colors={['#FFFF', '#FFA07A', '#FF7F50']}
         style={styles.linearGradient}>
-      <FlatList
-        data={limitedData}
-        renderItem={renderItem}
-        keyExtractor={item => item.id.toString()}
-        numColumns={numColumns}
-        initialNumToRender={2}
-        showsVerticalScrollIndicator={false}
-      />
+        <FlatList
+          // data={limitedData}
+          data={netdata}
+
+          renderItem={renderItem}
+          // keyExtractor={item => item.id.toString()}
+          numColumns={numColumns}
+          initialNumToRender={2}
+          showsVerticalScrollIndicator={false}
+        />
       </LinearGradient>
     </View>
   );
@@ -109,9 +132,8 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     margin: 5,
     width: (width - 20) / 2,
-    padding:12,
-    marginRight:10,
-
+    padding: 12,
+    marginRight: 10,
   },
   image: {
     width: '100%',
@@ -134,3 +156,14 @@ const styles = StyleSheet.create({
 });
 
 export default WallpaperScreen;
+
+
+// [
+//   {"fname": "ganesh", 
+//   "imageLink": "https://images.news18.com/ibnlive/uploads/2022/08/lord-ganesha-ganesh-festival-700-172145429.jpg",
+//   },
+//   {"fname": "hindugod", 
+//   "imageLink": "https://images.news18.com/ibnlive/uploads/2022/08/lord-ganesha-ganesh-festival-700-172145429.jpg",
+//   }
+
+// ]

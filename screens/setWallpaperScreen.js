@@ -12,10 +12,14 @@ import FloatingButton from '../components/floatingButton';
 
 import Images from '../assets/index';
 import { useNavigation } from '@react-navigation/native';
+import WallPaperManager from "react-native-set-wallpaper";
 
 const SetWallpaperScreen = ({route}) => {
-  const imgTitle = route.params.title;
-  const fname = route.params.fname;
+  //const imgTitle = route.params.title;
+  const imgTitle = 'hello';
+  //const fname = route.params.fname;
+  const imageLink = route.params.imageLink;
+
   const navigation = useNavigation();
 
   // console.log(typeof(image))
@@ -39,19 +43,26 @@ const SetWallpaperScreen = ({route}) => {
 
   const handlePress = () => {
     console.log('handle press..');
-    NativeModules.WallPaperManager.setWallpaper(
-        Image.resolveAssetSource(Images[fname][imgTitle]),
-        res => {
-            console.log(res);
-            showToastWithGravity();
-            //navigation.navigate('Wallpaper');
-            //createTwoButtonAlert();
-          }
-    );
+    // NativeModules.WallPaperManager.setWallpaper(
+    //     // Image.resolveAssetSource(Images[fname][imgTitle]),
+    //     Image.resolveAssetSource(imageLink),
+    //     res => {
+    //         console.log(res);
+    //         showToastWithGravity();
+    //         //navigation.navigate('Wallpaper');
+    //         //createTwoButtonAlert();
+    //       }
+    // );
+    WallPaperManager.setWallpaper({ uri: imageLink }, (res) => {
+  console.log(res);
+});
   };
   return (
     <View style={styles.container}>
-      <Image style={styles.image} source={Images[fname][imgTitle]} />
+      {/* <Image style={styles.image} source={Images[fname][imgTitle]} /> */}
+      <Image style={styles.image} source={{
+          uri: imageLink,
+        }} />
       <FloatingButton style={{fontSize: 40}} onPress={handlePress} />
     </View>
   );
