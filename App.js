@@ -1,9 +1,9 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationContainer} from '@react-navigation/native';
+
 import HomeScreen from './screens/homeScreen';
 import WallpaperScreen from './screens/wallpaper';
-import {StyleSheet} from 'react-native';
 import SetWallpaperScreen from './screens/setWallpaperScreen';
 
 const Stack = createNativeStackNavigator();
@@ -14,59 +14,33 @@ function App() {
       <Stack.Navigator
         initialRouteName="Home"
         screenOptions={{headerTitleAlign: 'center'}}>
+        {/* Home Screen (First Page) */}
         <Stack.Screen
           name="Home"
           component={HomeScreen}
           options={{
             title: 'Hindu God Wallpaper',
-            headerStyle: {
-              //backgroundColor: '#f4511e',
-            },
-            headerTintColor: 'black',
-            headerTitleStyle: {
-              fontWeight: 'bold',
-              fontSize: 25,
-              //textAlign:"center",
-              flex: 1,
-              alignSelf: 'center',
-            },
           }}
         />
-        <Stack.Screen name="Wallpaper" component={WallpaperScreen} />
+        {/* Wallpaper Screen (Second Page) */}
+        <Stack.Screen
+          name="Wallpaper"
+          component={WallpaperScreen}
+          options={({route}) => ({
+            title: route.params.name,
+          })}
+        />
+        {/* Set Wallpaper Screen (Thrid Page) */}
         <Stack.Screen
           name="SetWallpaper"
           component={SetWallpaperScreen}
-          options={{
-            title: 'Set Wallpaper',
-            headerStyle: {
-              //backgroundColor: '#f4511e',
-            },
-            headerTintColor: 'black',
-            headerTitleStyle: {
-              fontWeight: 'bold',
-              fontSize: 25,
-            },
-          }}
+          options={({route}) => ({
+            title: route.params.name,
+          })}
         />
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
-const styles = StyleSheet.create({
-  header: {
-    backgroundColor: 'red',
-    borderColor: '#FFF',
-  },
-  headerTitle: {
-    fontWeight: 'bold',
-    fontSize: 30,
-    color: 'black',
-    borderWidth: 10,
-    borderColor: 'pink',
-  },
-  headerBackTitle: {
-    color: 'black',
-    fontSize: 30,
-  },
-});
+
 export default App;

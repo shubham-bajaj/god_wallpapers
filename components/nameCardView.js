@@ -1,63 +1,52 @@
 import React from 'react';
-import {View,Text,StyleSheet,Image,} from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
-const NameCard = ({title, subtitle, imageSource,bgColor}) => {
+import {View, Text, StyleSheet, Image} from 'react-native';
+
+const NameCard = ({title, subtitle, imageSource, bgColor}) => {
   const containerStyle = {
     backgroundColor: '#FFF',
-    
   };
-  
+
   return (
-      
-      
-      <View style={[styles.mainCardView,containerStyle]}>
-      {/* <LinearGradient colors={['#4c669f', '#3b5998', '#192f6a']} style={styles.linearGradient}> */}
-        <View style={{flexDirection: 'row', alignItems: 'center'}}>
-          
-          <View style={{marginLeft: 12,width:200}}>
+    <View style={[styles.mainCardView, containerStyle]}>
+      <View style={{flexDirection: 'row', alignItems: 'center'}}>
+        <View style={{marginLeft: 12, width: 200}}>
+          <Text
+            style={{
+              fontSize: 28,
+              color: 'black',
+              fontWeight: 'bold',
+
+              textTransform: 'capitalize',
+            }}>
+            {title}
+          </Text>
+          <View
+            style={{
+              marginTop: 4,
+              borderWidth: 0,
+              width: '85%',
+            }}>
             <Text
               style={{
-                fontSize: 28,
-                color: 'black',
-                fontWeight: 'bold',
-                //fontFamily: Fonts.nunitoBold,
-                textTransform: 'capitalize',
+                fontSize: 15,
               }}>
-              {title}
+              {subtitle}
             </Text>
-            <View
-              style={{
-                marginTop: 4,
-                borderWidth: 0,
-                width: '85%',
-              }}>
-              <Text
-                style={{
-                  //color: Colors.gray,
-                  fontSize: 15,
-                }}>
-                {subtitle}
-              </Text>
-            </View>
-            
-          </View>
-          <View style={styles.subCardView}>
-            <Image
-              source={imageSource}
-              resizeMode="contain"
-              style={{
-                borderRadius: 25,
-                height: 50,
-                width: 50,
-              }}
-            />
           </View>
         </View>
-        {/* </LinearGradient> */}
+        <View style={styles.subCardView}>
+          <Image
+            source={imageSource}
+            resizeMode="contain"
+            style={{
+              borderRadius: 25,
+              height: 50,
+              width: 50,
+            }}
+          />
+        </View>
       </View>
-      
-
-    
+    </View>
   );
 };
 const styles = StyleSheet.create({
@@ -69,17 +58,16 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingLeft: 15,
     paddingRight: 15,
-    borderRadius: 5
+    borderRadius: 5,
   },
   mainCardView: {
     height: 90,
-    width:320,
+    width: 320,
     alignItems: 'center',
     justifyContent: 'center',
-    //backgroundColor: {bgColor},
-    //backgroundColor: 'rgba(150, 150, 150, 0.2)',
+
     borderRadius: 15,
-    //shadowColor: Colors.shadow,
+
     shadowOffset: {width: 0, height: 0},
     shadowOpacity: 1,
     shadowRadius: 8,
@@ -94,13 +82,11 @@ const styles = StyleSheet.create({
     marginRight: 16,
   },
   subCardView: {
-    
     height: 50,
     width: 50,
     borderRadius: 25,
-    marginLeft:20,
-    //   backgroundColor: Colors.history_back,
-    //   borderColor: Colors.color_eeeeee,
+    marginLeft: 20,
+
     borderWidth: 1,
     borderStyle: 'solid',
     alignItems: 'center',

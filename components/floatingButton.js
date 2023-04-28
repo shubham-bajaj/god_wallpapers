@@ -1,16 +1,16 @@
 import React from 'react';
-import { View, TouchableOpacity,Text, StyleSheet } from 'react-native';
-import Icon from 'react-native-vector-icons/AntDesign';
-const FloatingButton = ({ onPress }) => {
-    return (
-      <View style={styles.container}>
-        
-        <TouchableOpacity onPress={onPress} style={styles.button}>
-        <Icon name='checkcircle' color='white' size={50} />
-        </TouchableOpacity>
-      </View>
-    );
-  };
+import {View, TouchableOpacity, Text, StyleSheet} from 'react-native';
+const FloatingButton = ({onPress}) => {
+  return (
+    <View style={styles.container}>
+      <TouchableOpacity onPress={onPress} style={styles.button}>
+        <Text style={{fontSize: 15, padding: 5, fontWeight: 'bold'}}>
+          Apply Wallpaper
+        </Text>
+      </TouchableOpacity>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -19,15 +19,13 @@ const styles = StyleSheet.create({
     right: 20,
   },
   button: {
-    // width: 60,
-    // height: 60,
-    // borderRadius: 30,
-    // backgroundColor: '#f4511e',
-    // justifyContent: 'center',
-    // alignItems: 'center',
-  
-    // elevation: 5,
+    width: 140,
+    height: 40,
+    borderRadius: 15,
+    backgroundColor: '#ffff',
+    justifyContent: 'center',
+    alignItems: 'center',
+    elevation: 5,
   },
 });
 export default FloatingButton;
-  

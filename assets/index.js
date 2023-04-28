@@ -1,4 +1,4 @@
-const Images = {
+export const Images = {
   icon: {
     ganeshIcon: require('../assets/icon/ganeshIcon.png'),
     hanumanIcon: require('../assets/icon/hanumanIcon.png'),
@@ -6,61 +6,50 @@ const Images = {
     shaniIcon: require('../assets/icon/shaniIcon.png'),
     shivIcon: require('../assets/icon/shivIcon.png'),
     vishnuIcon: require('../assets/icon/vishnuIcon.png'),
-    sunGodIcon: require('../assets/icon/sunGodIcon.png'),
-  },
-  ganesh: {
-    image1: require('../assets/ganesh/ganesh_img_1.jpeg'),
-    image2: require('../assets/ganesh/ganesh_img_2.jpeg'),
-    image3: require('../assets/ganesh/ganesh_img_4.jpeg'),
-    image4: require('../assets/ganesh/ganesh_img_5.jpeg'),
-    image5: require('../assets/ganesh/ganesh_img_6.jpeg'),
-  },
-  shiva: {
-    image1: require('../assets/shiva/shiva_img_1.jpeg'),
-    image2: require('../assets/shiva/shiva_img_2.jpeg'),
-    image3: require('../assets/shiva/shiva_img_3.jpeg'),
-    image4: require('../assets/shiva/shiva_img_4.jpeg'),
-    image5: require('../assets/shiva/shiva_img_5.jpeg'),
-    image6: require('../assets/shiva/shiva_img_0.jpeg'),
-  },
-  hanuman: {
-    image1: require('../assets/hanuman/hanuman_img_1.jpeg'),
-    image2: require('../assets/hanuman/hanuman_img_2.jpeg'),
-    image3: require('../assets/hanuman/hanuman_img_3.jpeg'),
-    image4: require('../assets/hanuman/hanuman_img_4.jpeg'),
-    image5: require('../assets/hanuman/hanuman_img_0.jpeg'),
-  },
-  vishnu: {
-    image1: require('../assets/vishnu/vishnu_img_1.jpeg'),
-    image2: require('../assets/vishnu/vishnu_img_2.jpeg'),
-    image3: require('../assets/vishnu/vishnu_img_3.jpeg'),
-    image4: require('../assets/vishnu/vishnu_img_4.jpeg'),
-    image5: require('../assets/vishnu/vishnu_img_5.jpeg'),
-    image6: require('../assets/vishnu/vishnu_img_6.jpeg'),
-    image7: require('../assets/vishnu/vishnu_img_7.jpeg'),
-    image8: require('../assets/vishnu/vishnu_img_8.jpeg'),
-    image9: require('../assets/vishnu/vishnu_img_0.jpeg'),
-  },
-  hinduGod: {
-    image1: require('../assets/shiva/shiva_img_1.jpeg'),
-    image2: require('../assets/vishnu/vishnu_img_2.jpeg'),
-    image3: require('../assets/ganesh/ganesh_img_4.jpeg'),
-    image4: require('../assets/hanuman/hanuman_img_4.jpeg'),
-    image5: require('../assets/hanuman/hanuman_img_0.jpeg'),
-    image6: require('../assets/shiva/shiva_img_0.jpeg'),
-    image7: require('../assets/vishnu/vishnu_img_7.jpeg'),
-    image8: require('../assets/vishnu/vishnu_img_8.jpeg'),
-    image9: require('../assets/vishnu/vishnu_img_0.jpeg'),
-  },
-  lakshmi: {
-    
-    image1: require('../assets/lakshmi/lakshmi_img_1.jpeg'),
-    image2: require('../assets/lakshmi/lakshmi_img_2.jpeg'),
-    image3: require('../assets/lakshmi/lakshmi_img_3.jpeg'),
-    image4: require('../assets/lakshmi/lakshmi_img_4.jpeg'),
-    image5: require('../assets/lakshmi/lakshmi_img_5.jpeg'),
-    image6: require('../assets/lakshmi/lakshmi_img_0.jpeg'),
+    godIcon: require('../assets/icon/godIcon.png'),
   },
 };
-
-export default Images;
+export const godInfo = [
+  {
+    id: '0',
+    name: 'God Wallpapers',
+    subtitle: 'ॐ नमः शिवाय',
+    iconName: 'godIcon',
+    fname: 'hinduGod',
+  },
+  {
+    id: '1',
+    name: 'Shivji',
+    subtitle: 'ॐ नमः शिवाय',
+    iconName: 'shivIcon',
+    fname: 'shiva',
+  },
+  {
+    id: '2',
+    name: 'Hanumanji',
+    subtitle: 'जय श्री राम',
+    iconName: 'hanumanIcon',
+    fname: 'hanuman',
+  },
+  {
+    id: '3',
+    name: 'Ganeshji',
+    subtitle: 'ॐ श्री गणेशाय नमः',
+    iconName: 'ganeshIcon',
+    fname: 'ganesh',
+  },
+  {
+    id: '4',
+    name: 'krishnaji',
+    subtitle: 'ॐ जय जगदीश हरे',
+    iconName: 'vishnuIcon',
+    fname: 'vishnu',
+  },
+  {
+    id: '5',
+    name: 'Lakshmiji',
+    subtitle: 'ॐ जय लक्ष्मी माता',
+    iconName: 'lakshmiIcon',
+    fname: 'lakshmi',
+  },
+];
