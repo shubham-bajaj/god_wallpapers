@@ -4,7 +4,7 @@ const FloatingButton = ({onPress}) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={onPress} style={styles.button}>
-        <Text style={{fontSize: 15, padding: 5, fontWeight: 'bold'}}>
+        <Text style={{fontSize: 15, color:'black', padding: 5, fontWeight: 'bold'}}>
           Apply Wallpaper
         </Text>
       </TouchableOpacity>

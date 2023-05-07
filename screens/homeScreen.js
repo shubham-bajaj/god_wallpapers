@@ -4,10 +4,27 @@ import {
   StyleSheet,
   FlatList,
   SafeAreaView,
+  ActivityIndicator,
 } from 'react-native';
 import NameCard from '../components/nameCardView';
 import LinearGradient from 'react-native-linear-gradient';
 import {Images, godInfo} from '../assets/index';
+// import { BannerAd, BannerAdSize, TestIds } from 'react-native-google-mobile-ads';
+
+// const adUnitId = __DEV__ ? TestIds.BANNER : 'ca-app-pub-6931860583577865/7039403020';
+
+// const appOpenAd = AppOpenAd.createForAdRequest(adUnitId, {
+//   requestNonPersonalizedAdsOnly: true,
+//   keywords: ['fashion', 'clothing'],
+// });
+
+// // Preload an app open ad
+// appOpenAd.load();
+
+// // Show the app open ad when user brings the app to the foreground.
+// appOpenAd.show();
+
+
 
 function HomeScreen({navigation}) {
  
@@ -15,6 +32,7 @@ function HomeScreen({navigation}) {
     navigation.navigate('Wallpaper', {fname: item.fname, name: item.name});
   };
   const [listData,setListData]=useState(godInfo)
+  const [isLoading, setIsLoading] = useState(true);
   const renderItem = ({item}) => (
     <TouchableOpacity
       style={{justifyContent: 'center', alignItems: 'center'}}
@@ -31,18 +49,27 @@ function HomeScreen({navigation}) {
     </TouchableOpacity>
   );
   useEffect(() => {
-    fetch(`http://192.168.29.80:8000/category/`, {
-      method: 'GET',
-    })
-      .then(res => res.json())
-      .then(jsonRes =>setListData(godInfo.concat(jsonRes)))
-      
-      .catch(error => console.log(error));
+    
+    async function categoryData(){
+      try {
+        const response = await fetch(`http://shubham204.pythonanywhere.com/category/`, {
+          method: 'GET',
+        });
+        const jsonData = await response.json();
+        console.log(jsonData)
+        setListData(godInfo.concat(jsonData))
+        setIsLoading(false)
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    categoryData()
    
   }, []);
   return (
     <SafeAreaView style={styles.container}>
-      <LinearGradient
+      {isLoading ? <ActivityIndicator size="large" color="#0000ff" /> : (
+        <LinearGradient
         colors={['#FFFF', '#FFA07A', '#FF7F50']}
         style={styles.linearGradient}>
         <FlatList
@@ -53,6 +80,12 @@ function HomeScreen({navigation}) {
           showsVerticalScrollIndicator={false}
         />
       </LinearGradient>
+      )}
+      {/* <BannerAd
+      unitId={adUnitId}
+      size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
+    /> */}
+      
     </SafeAreaView>
   );
 }

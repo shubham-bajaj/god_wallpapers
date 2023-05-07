@@ -7,6 +7,9 @@ export const Images = {
     shivIcon: require('../assets/icon/shivIcon.png'),
     vishnuIcon: require('../assets/icon/vishnuIcon.png'),
     godIcon: require('../assets/icon/godIcon.png'),
+    saiIcon: require('../assets/icon/saiIcon.png'),
+    ramaIcon: require('../assets/icon/ramaIcon.png'),
+    shyamIcon: require('../assets/icon/shyamIcon.png'),
   },
 };
 export const godInfo = [
@@ -43,7 +46,7 @@ export const godInfo = [
     name: 'krishnaji',
     subtitle: 'ॐ जय जगदीश हरे',
     iconName: 'vishnuIcon',
-    fname: 'vishnu',
+    fname: 'krishna',
   },
   {
     id: '5',

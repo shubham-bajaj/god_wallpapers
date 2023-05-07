@@ -8,3 +8,9 @@
 #   http://developer.android.com/guide/developing/tools/proguard.html
 
 # Add any project specific keep options here:
+-keep class com.opentok.android.** { *; }
+-keep class com.opentok.otc.** { *; }
+-keep class org.otwebrtc.** { *; }
+
+-dontwarn com.opentok.android.**
+-dontwarn com.opentok.otc.**

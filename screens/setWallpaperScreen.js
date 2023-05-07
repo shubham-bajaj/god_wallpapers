@@ -3,7 +3,12 @@ import {Image, StyleSheet, ToastAndroid, View, Alert} from 'react-native';
 import FloatingButton from '../components/floatingButton';
 
 import {useNavigation} from '@react-navigation/native';
-import WallPaperManager from 'react-native-set-wallpaper';
+//import WallPaperManager from 'react-native-set-wallpaper';
+import { setWall } from 'rn-set-wallpaper';
+// import { BannerAd, BannerAdSize, TestIds } from 'react-native-google-mobile-ads';
+
+// const adUnitId = __DEV__ ? TestIds.BANNER : 'ca-app-pub-6931860583577865/7039403020';
+
 
 const SetWallpaperScreen = ({route}) => {
   const navigation = useNavigation();
@@ -19,7 +24,15 @@ const SetWallpaperScreen = ({route}) => {
   useEffect(() => {
     navigation.setOptions({title: `${name}`});
   }, []);
-
+  async function sw(imageLink){
+    //showToastWithGravity();
+    const result = await setWall(imageLink);
+    if(result===true){
+      showToastWithGravity();
+    }
+    
+    
+  }
   const handlePress = () => {
     //DIRECTLY FROM NATIVE MODULE
     // NativeModules.WallPaperManager.setWallpaper(
@@ -32,10 +45,12 @@ const SetWallpaperScreen = ({route}) => {
     //         //createTwoButtonAlert();
     //       }
     // );
-    WallPaperManager.setWallpaper({uri: imageLink}, res => {
-      console.log(res);
-      showToastWithGravity();
-    });
+    //WallPaperManager.setWallpaper({uri: imageLink}, (res)=> console.log(res));
+    sw(imageLink);
+    // WallPaperManager.setWallpaper({uri: imageLink}, res => {
+    //   console.log(res);
+    //   showToastWithGravity();
+    // });
   };
   return (
     <View style={styles.container}>
@@ -46,6 +61,10 @@ const SetWallpaperScreen = ({route}) => {
         }}
       />
       <FloatingButton onPress={handlePress} />
+      {/* <BannerAd
+      unitId={adUnitId}
+      size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
+    /> */}
     </View>
   );
 };
